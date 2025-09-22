@@ -1,0 +1,553 @@
+/* ===========================================
+   DOC24 - ESTILOS CSS PARA LOGIN DE PACIENTES
+   
+   Estructura del archivo:
+   1. Reset y configuración general
+   2. Patrón de fondo médico
+   3. Contenedor principal
+   4. Header y logo
+   5. Formulario y campos
+   6. Botones y enlaces
+   7. Footer y elementos adicionales
+   8. Responsive design
+   9. Animaciones y transiciones
+   10. Utilidades y accesibilidad
+=========================================== */
+
+/* ===========================================
+   1. RESET Y CONFIGURACIÓN GENERAL
+=========================================== */
+/* Eliminar márgenes y paddings por defecto de todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Incluir bordes y padding en el cálculo del tamaño */
+}
+
+/* Configuración del documento principal */
+html {
+    font-size: 16px; /* Tamaño base para rem */
+    scroll-behavior: smooth;
+}
+
+/* Estilos del cuerpo del documento */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradiente médico profesional */
+    min-height: 100vh; /* Altura mínima de toda la ventana */
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    position: relative;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ===========================================
+   2. PATRÓN DE FONDO MÉDICO DECORATIVO
+=========================================== */
+/* Patrón de puntos médicos en el fondo usando pseudo-elemento */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Tres capas de círculos de diferentes tamaños para simular patrón médico */
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at 40% 20%, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 80px 80px, 30px 30px;
+    z-index: 0; /* Mantener detrás del contenido */
+}
+
+/* ===========================================
+   3. CONTENEDOR PRINCIPAL DEL LOGIN
+=========================================== */
+/* Card principal que contiene todo el formulario de login */
+.login-container {
+    background: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de cristal esmerilado */
+    border-radius: 20px; /* Esquinas redondeadas modernas */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Sombra suave y profunda */
+    padding: 40px; /* Espaciado interno generoso */
+    width: 100%;
+    max-width: 450px; /* Ancho máximo para mantener proporción */
+    position: relative;
+    z-index: 1; /* Asegurar que esté por encima del fondo */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    transition: transform 0.3s ease; /* Transición suave para efectos */
+}
+
+/* Efecto hover sutil en el contenedor */
+.login-container:hover {
+    transform: translateY(-5px);
+}
+
+/* ===========================================
+   4. HEADER CON LOGO Y TÍTULO
+=========================================== */
+/* Sección superior del formulario */
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Logo circular con gradiente médico */
+.logo {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #4CAF50, #2196F3); /* Verde médico a azul */
+    border-radius: 50%; /* Completamente circular */
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3); /* Sombra verde suave */
+    transition: transform 0.3s ease;
+}
+
+/* Ícono dentro del logo */
+.logo i {
+    font-size: 35px;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Título principal de la aplicación */
+.login-title {
+    font-size: 28px;
+    color: #333;
+    font-weight: 600; /* Peso semi-bold */
+    margin-bottom: 8px;
+    letter-spacing: -0.5px; /* Espaciado de letras ajustado */
+}
+
+/* Subtítulo descriptivo */
+.login-subtitle {
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* ===========================================
+   5. FORMULARIO Y CAMPOS DE ENTRADA
+=========================================== */
+/* Contenedor del formulario principal */
+.login-form {
+    margin-top: 30px;
+}
+
+/* Grupo de cada campo del formulario */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Etiquetas de los campos */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer; /* Cursor pointer para mejorar UX */
+}
+
+/* Contenedor de input con ícono */
+.input-container {
+    position: relative;
+    transition: transform 0.2s ease; /* Para efecto de escala */
+}
+
+/* Íconos dentro de los campos de entrada */
+.input-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 16px;
+    z-index: 2;
+    transition: color 0.3s ease; /* Transición del color del ícono */
+    pointer-events: none; /* Evitar que interfiera con el input */
+}
+
+/* Campos de entrada principales */
+.form-input {
+    width: 100%;
+    padding: 15px 15px 15px 50px; /* Padding izquierdo mayor para el ícono */
+    border: 2px solid #e1e5e9; /* Borde gris claro */
+    border-radius: 10px; /* Esquinas redondeadas */
+    font-size: 16px;
+    transition: all 0.3s ease; /* Transición suave para todos los cambios */
+    background: #fff;
+    font-family: inherit; /* Heredar fuente del padre */
+}
+
+/* Estados de enfoque de los campos */
+.form-input:focus {
+    outline: none; /* Quitar outline por defecto del navegador */
+    border-color: #4CAF50; /* Borde verde médico al enfocar */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1); /* Sombra de enfoque */
+}
+
+/* Cambio de color del ícono cuando el input está enfocado */
+.form-input:focus + .input-container i,
+.input-container:focus-within i {
+    color: #4CAF50;
+}
+
+/* Placeholder styling */
+.form-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* ===========================================
+   6. OPCIONES DE FORMULARIO Y BOTONES
+=========================================== */
+/* Contenedor de opciones (recordar y olvidar contraseña) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 14px;
+    flex-wrap: wrap; /* Permitir wrap en pantallas pequeñas */
+    gap: 10px;
+}
+
+/* Checkbox para recordar sesión */
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Estilo del checkbox */
+.remember-me input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4CAF50; /* Color verde médico para el checkbox */
+    cursor: pointer;
+}
+
+/* Etiqueta del checkbox */
+.remember-me label {
+    cursor: pointer;
+    margin: 0; /* Resetear margin del label */
+    font-size: 14px;
+}
+
+/* Enlace para recuperar contraseña */
+.forgot-password {
+    color: #2196F3; /* Azul médico */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    color: #1976D2; /* Azul más oscuro al hover */
+    text-decoration: underline;
+}
+
+/* ===========================================
+   7. BOTÓN PRINCIPAL DE LOGIN
+=========================================== */
+/* Botón principal de inicio de sesión */
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #4CAF50, #45a049); /* Gradiente verde */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3); /* Sombra verde */
+    position: relative;
+    overflow: hidden; /* Para efectos de animación */
+}
+
+/* Estados del botón */
+.login-button:hover {
+    background: linear-gradient(45deg, #45a049, #388e3c);
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.login-button:active {
+    transform: translateY(0); /* Volver a posición original al hacer clic */
+}
+
+.login-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Separador visual entre secciones */
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 25px 0;
+    color: #999;
+    font-size: 14px;
+}
+
+/* Línea del divider */
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e1e5e9;
+    z-index: 1;
+}
+
+/* Texto del divider con fondo */
+.divider span {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===========================================
+   8. ENLACES DE REGISTRO Y FOOTER
+=========================================== */
+/* Sección de enlace de registro */
+.register-link {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.register-link a {
+    color: #2196F3;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #1976D2;
+    text-decoration: underline;
+}
+
+/* Footer con información adicional */
+.login-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e5e9;
+    text-align: center;
+}
+
+/* Información de soporte */
+.support-info {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.support-info a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.support-info a:hover {
+    text-decoration: underline;
+}
+
+/* Badge de seguridad SSL */
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+/* ===========================================
+   9. RESPONSIVE DESIGN
+=========================================== */
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .login-container {
+        margin: 15px;
+        padding: 35px 30px;
+    }
+    
+    .login-title {
+        font-size: 26px;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .login-container {
+        margin: 20px;
+        padding: 30px 25px;
+    }
+
+    .login-title {
+        font-size: 24px;
+    }
+    
+    .login-subtitle {
+        font-size: 15px;
+    }
+
+    /* Reorganizar opciones del formulario en móvil */
+    .form-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .logo i {
+        font-size: 30px;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .login-container {
+        margin: 10px;
+        padding: 25px 20px;
+    }
+    
+    .form-input {
+        padding: 12px 12px 12px 45px;
+        font-size: 15px;
+    }
+}
+
+/* ===========================================
+   10. ANIMACIONES Y TRANSICIONES
+=========================================== */
+/* Animación de entrada del contenedor */
+.login-container {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación del logo */
+.logo {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animación de carga para el botón */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Animación de shake para errores */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* ===========================================
+   11. UTILIDADES Y ACCESIBILIDAD
+=========================================== */
+/* Clase para contenido solo visible para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Estados de enfoque para accesibilidad */
+*:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+/* Remover outline solo para mouse, mantener para teclado */
+.js-focus-visible *:focus:not(.focus-visible) {
+    outline: none;
+}
+
+/* Preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+    .login-container {
+        border: 2px solid #000;
+        background: #fff;
+    }
+    
+    .form-input {
+        border-color: #000;
+    }
+    
+    .form-input:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 2px #0066cc;
+    }
+}

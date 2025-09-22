@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ===========================================
+         META TAGS Y CONFIGURACIÓN BÁSICA
+    =========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- resume la informacion de la página -->
+    <meta name="description" content="Hospital Italiano de La Plata - Hospital comunitario sin fines de lucro fundado en 1886. Atención médica integral desde atención primaria hasta alta complejidad.">
+    <!-- Son etiquetas dentro de la pagina -->
+    <meta name="keywords" content="Hospital Italiano, La Plata, salud, medicina, turnos, emergencias, especialidades médicas">
+    <!-- El autor de la pagina -->
+    <meta name="author" content="Hospital Italiano de La Plata">
+    <title>Inicio | Sistema de gestion de citas medicas</title>
+    
+    <!-- ===========================================
+         ENLACES EXTERNOS Y FUENTES
+    =========================================== -->
+    <!-- Font Awesome para íconos médicos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos css -->
+     <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ===========================================
+         HEADER CON NAVEGACIÓN PRINCIPAL
+    =========================================== -->
+    <header class="header">
+        <!-- Barra superior con información de contacto -->
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(0221) 453-5000</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@italianolaplata.org.ar</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. 51 N° 1725 e/ 29 y 30, La Plata</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Hospital Italiano</h1>
+                            <p>La Plata</p>
+                        </div>
+                    </a>
+                    
+                    <nav class="nav-main">
+                        <a href="#">Inicio</a>
+                        <a href="#nosotros">Nosotros</a>
+                        <a href="#especialidades">Especialidades</a>
+                        <a href="#turnos">Turnos</a>
+                        <a href="#noticias">Noticias</a>
+                        <a href="#contacto">Contacto</a>
+                        <a href="#emergencia" class="emergency-btn">
+                            <i class="fas fa-ambulance"></i> Emergencias
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===========================================
+         HERO SECTION PRINCIPAL
+    =========================================== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Hospital Comunitario</h1>
+                <p class="hero-subtitle">
+                    Más de 135 años cuidando tu salud y la de tu familia.<br>
+                    #JuntosPodemos - Atención médica integral de calidad
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">135+</span>
+                        <span class="stat-label">Años de historia</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Especialidades</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Atención de emergencias</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Consultas anuales</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         ACCESOS RÁPIDOS
+    =========================================== -->
+    <section class="quick-access">
+        <div class="container">
+            <div class="quick-access-grid">
+                <!-- Card de Emergencias -->
+                <div class="access-card emergency fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3 class="card-title">Emergencias</h3>
+                    <p class="card-description">
+                        Atención médica de urgencia las 24 horas del día, los 365 días del año.
+                        Personal especializado y equipamiento de última generación.
+                    </p>
+                    <a href="#" class="card-btn">
+                        <i class="fas fa-phone"></i> Contactar Emergencias
+                    </a>
+                </div>
+                
+                <!-- Card de Turnos -->
+                <div class="access-card appointments fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="card-title">Turnos Online</h3>
+                    <p class="card-description">
+                        Reservá tu turno médico de forma rápida y sencilla. 
+                        Más de 50 especialidades disponibles con profesionales de excelencia.
+                    </p>
+                    <a href="#" class="card-btn">
+                        <i class="fas fa-calendar-plus"></i> Sacar Turno
+                    </a>
+                </div>
+                
+                <!-- Card de Portal del Paciente -->
+                <div class="access-card portal fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="card-title">Portal del Paciente</h3>
+                    <p class="card-description">
+                        Accedé a tu historia clínica, resultados de estudios, turnos programados 
+                        y toda tu información médica en un solo lugar.
+                    </p>
+                    <a href="#" class="card-btn">
+                        <i class="fas fa-sign-in-alt"></i> Ingresar al Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SECCIÓN NOSOTROS
+    =========================================== -->
+    <section id="nosotros" class="section" style="background: var(--light-bg);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Nosotros</h2>
+                <p class="section-subtitle">
+                    Una institución centenaria comprometida con la salud comunitaria
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content fade-in">
+                    <h3>Hospital Comunitario sin fines de lucro</h3>
+                    <p>
+                        Desde 1886, el Hospital Italiano de La Plata se ha consolidado como una institución 
+                        referente en la atención médica integral. Somos un hospital comunitario, sin fines 
+                        de lucro, asistencial y docente que trabaja ubicando al paciente y su familia en el centro.
+                    </p>
+                    <p>
+                        Nuestro compromiso es brindar atención médica de calidad, desde atención primaria 
+                        hasta alta complejidad, con un enfoque humanizado y tecnología de vanguardia.
+                    </p>
+                    
+                    <ul class="about-features">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Más de 135 años de trayectoria en salud
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Hospital universitario con actividad docente
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Atención integral desde primaria hasta alta complejidad
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Compromiso con la comunidad de La Plata y región
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Tecnología médica de última generación
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="about-image fade-in">
+                    <i class="fas fa-hospital-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         ESPECIALIDADES MÉDICAS
+    =========================================== -->
+    <section id="especialidades" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Especialidades</h2>
+                <p class="section-subtitle">
+                    Más de 50 especialidades médicas con profesionales de excelencia
+                </p>
+            </div>
+            
+            <div class="specialties-grid">
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4>Cardiología</h4>
+                    <p>Diagnóstico y tratamiento integral de enfermedades cardiovasculares</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>Neurología</h4>
+                    <p>Atención especializada en trastornos del sistema nervioso</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h4>Pediatría</h4>
+                    <p>Cuidado médico integral para bebés, niños y adolescentes</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <h4>Diagnóstico por Imágenes</h4>
+                    <p>Resonancia, tomografía, ecografías y estudios especializados</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h4>Cirugía General</h4>
+                    <p>Procedimientos quirúrgicos con técnicas mínimamente invasivas</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h4>Ginecología</h4>
+                    <p>Atención integral de la salud femenina y reproductiva</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h4>Oftalmología</h4>
+                    <p>Diagnóstico y tratamiento de enfermedades oculares</p>
+                </div>
+                
+                <div class="specialty-card fade-in">
+                    <div class="specialty-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h4>Neumonología</h4>
+                    <p>Especialistas en enfermedades del sistema respiratorio</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="#" class="btn-primary">
+                    <i class="fas fa-list"></i> Ver todas las especialidades
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         NOTICIAS Y COMUNICADOS
+    =========================================== -->
+    <section id="noticias" class="section" style="background: var(--light-bg);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Noticias</h2>
+                <p class="section-subtitle">
+                    Mantente informado sobre novedades, campañas de salud y eventos
+                </p>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card fade-in">
+                    <div class="news-image">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="news-content">
+                        <time class="news-date">15 de Septiembre, 2025</time>
+                        <h3 class="news-title">Nueva campaña de prevención cardiovascular</h3>
+                        <p class="news-excerpt">
+                            Lanzamos una nueva campaña de concientización sobre la importancia 
+                            de la prevención en enfermedades cardiovasculares...
+                        </p>
+                    </div>
+                </article>
+                
+                <article class="news-card fade-in">
+                    <div class="news-image">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="news-content">
+                        <time class="news-date">10 de Septiembre, 2025</time>
+                        <h3 class="news-title">Nuevo equipamiento de diagnóstico por imágenes</h3>
+                        <p class="news-excerpt">
+                            Incorporamos tecnología de última generación para mejorar 
+                            la precisión diagnóstica y reducir tiempos de espera...
+                        </p>
+                    </div>
+                </article>
+                
+                <article class="news-card fade-in">
+                    <div class="news-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="news-content">
+                        <time class="news-date">5 de Septiembre, 2025</time>
+                        <h3 class="news-title">Jornada de formación médica continua</h3>
+                        <p class="news-excerpt">
+                            Realizamos una nueva jornada de actualización médica 
+                            con especialistas nacionales e internacionales...
+                        </p>
+                    </div>
+                </article>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="#" class="btn-primary">
+                    <i class="fas fa-newspaper"></i> Ver todas las noticias
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         INFORMACIÓN DE CONTACTO
+    =========================================== -->
+    <section id="contacto" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-subtitle">
+                    Estamos aquí para cuidarte. Contactanos por cualquier consulta
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl); margin-top: var(--spacing-xl);">
+                <div class="fade-in" style="text-align: center; padding: var(--spacing-lg); background: var(--white); border-radius: 12px; box-shadow: var(--shadow-md);">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-md); color: var(--white); font-size: 24px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4 style="font-size: 1.2rem; margin-bottom: var(--spacing-sm); color: var(--text-dark);">Ubicación</h4>
+                    <p style="color: var(--text-light);">
+                        Av. 51 N° 1725 e/ 29 y 30<br>
+                        La Plata, Buenos Aires<br>
+                        Argentina
+                    </p>
+                </div>
+                
+                <div class="fade-in" style="text-align: center; padding: var(--spacing-lg); background: var(--white); border-radius: 12px; box-shadow: var(--shadow-md);">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, var(--accent-color), #5dd85d); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-md); color: var(--white); font-size: 24px;">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4 style="font-size: 1.2rem; margin-bottom: var(--spacing-sm); color: var(--text-dark);">Teléfonos</h4>
+                    <p style="color: var(--text-light);">
+                        Central: (0221) 453-5000<br>
+                        Emergencias: (0221) 453-5999<br>
+                        Turnos: (0221) 453-5100
+                    </p>
+                </div>
+                
+                <div class="fade-in" style="text-align: center; padding: var(--spacing-lg); background: var(--white); border-radius: 12px; box-shadow: var(--shadow-md);">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, var(--danger-color), #ff6b6b); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-md); color: var(--white); font-size: 24px;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4 style="font-size: 1.2rem; margin-bottom: var(--spacing-sm); color: var(--text-dark);">Horarios</h4>
+                    <p style="color: var(--text-light);">
+                        Emergencias: 24hs<br>
+                        Consultorios: 8:00 - 20:00<br>
+                        Administración: 8:00 - 16:00
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         FOOTER INSTITUCIONAL
+    =========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Hospital Italiano La Plata</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: var(--spacing-md);">
+                        Institución centenaria comprometida con la salud comunitaria. 
+                        Más de 135 años cuidando la salud de La Plata y región.
+                    </p>
+                    <div style="display: flex; gap: var(--spacing-sm);">
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#">Consultas Médicas</a></li>
+                        <li><a href="#">Emergencias 24hs</a></li>
+                        <li><a href="#">Cirugía Ambulatoria</a></li>
+                        <li><a href="#">Diagnóstico por Imágenes</a></li>
+                        <li><a href="#">Laboratorio</a></li>
+                        <li><a href="#">Internación</a></li>
+                        <li><a href="#">Farmacia</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Pacientes</h4>
+                    <ul>
+                        <li><a href="#">Portal del Paciente</a></li>
+                        <li><a href="#">Turnos Online</a></li>
+                        <li><a href="#">Preparación para Estudios</a></li>
+                        <li><a href="#">Resultados Online</a></li>
+                        <li><a href="#">Derechos del Paciente</a></li>
+                        <li><a href="#">Obras Sociales</a></li>
+                        <li><a href="#">Admisión</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Av. 51 N° 1725 e/ 29 y 30, La Plata
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            (0221) 453-5000
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            info@italianolaplata.org.ar
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            Emergencias 24hs
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Hospital Italiano de La Plata. Todos los derechos reservados.</p>
+                <p>
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);">Política de Privacidad</a> | 
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);">Términos de Uso</a> | 
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);">Mapa del Sitio</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===========================================
+         JAVASCRIPT PARA FUNCIONALIDAD
+    =========================================== -->
+    <script>
+        // ===========================================
+        // ANIMACIONES DE SCROLL
+        // ===========================================
+        
+        // Configurar Intersection Observer para animaciones fade-in
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar todos los elementos con clase fade-in
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+            
+            // Inicializar otras funcionalidades
+            initSmoothScrolling();
+            initMobileMenu();
+            initCounterAnimations();
+            
+            console.log('🏥 Hospital Italiano - Sitio web cargado correctamente');
+        });
+        
+        // ===========================================
+        // NAVEGACIÓN SUAVE
+        // ===========================================
+        function initSmoothScrolling() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // ===========================================
+        // MENÚ MÓVIL (PLACEHOLDER PARA FUNCIONALIDAD FUTURA)
+        // ===========================================
+        function initMobileMenu() {
+            // En una implementación completa, aquí iría la lógica para el menú hamburguesa
+            console.log('📱 Funcionalidad de menú móvil inicializada');
+        }
+        
+        // ===========================================
+        // ANIMACIÓN DE CONTADORES
+        // ===========================================
+        function initCounterAnimations() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            const animateCounter = (counter) => {
+                const target = counter.textContent;
+                const numericValue = parseInt(target.replace(/\D/g, ''));
+                const suffix = target.replace(/\d/g, '');
+                
+                if (isNaN(numericValue)) return;
+                
+                let current = 0;
+                const increment = numericValue / 50;
+                const duration = 2000;
+                const stepTime = duration / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        current = numericValue;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current) + suffix;
+                }, stepTime);
+            };
+            
+            // Observer para animar contadores cuando son visibles
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => counterObserver.observe(counter));
+        }
+        
+        // ===========================================
+        // EFECTOS DE HOVER PARA CARDS
+        // ===========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.access-card, .specialty-card, .news-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+        
+        // ===========================================
+        // STICKY HEADER EFFECT
+        // ===========================================
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const scrolled = window.scrollY > 100;
+            
+            if (scrolled) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = '#ffffff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+        
+        // ===========================================
+        // MANEJO DE FORMULARIOS Y ENLACES
+        // ===========================================
+        function handleEmergencyCall() {
+            if (confirm('¿Necesita atención de emergencia? Será redirigido para contactar al servicio de emergencias.')) {
+                window.location.href = 'tel:+542214535999';
+            }
+        }
+        
+        function handleTurnos() {
+            alert('Redirigiendo al sistema de turnos online...');
+            // En producción: window.location.href = '/turnos';
+        }
+        
+        function handlePortalPaciente() {
+            alert('Redirigiendo al portal del paciente...');
+            // En producción: window.location.href = '/portal';
+        }
+        
+        // Agregar event listeners a los botones principales
+        document.addEventListener('DOMContentLoaded', () => {
+            const emergencyBtns = document.querySelectorAll('.emergency-btn, .emergency .card-btn');
+            emergencyBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleEmergencyCall();
+                });
+            });
+            
+            const appointmentBtns = document.querySelectorAll('.appointments .card-btn');
+            appointmentBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleTurnos();
+                });
+            });
+            
+            const portalBtns = document.querySelectorAll('.portal .card-btn');
+            portalBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handlePortalPaciente();
+                });
+            });
+        });
+        
+        // ===========================================
+        // CONSOLE MESSAGE PARA DESARROLLADORES
+        // ===========================================
+        console.log(`
+🏥 HOSPITAL ITALIANO DE LA PLATA
+================================
+📍 Av. 51 N° 1725 e/ 29 y 30, La Plata
+📞 Central: (0221) 453-5000
+🚨 Emergencias: (0221) 453-5999
+📅 Turnos: (0221) 453-5100
+
+🌐 Sitio web desarrollado con:
+   - HTML5 semántico
+   - CSS Grid y Flexbox
+   - JavaScript vanilla
+   - Animaciones CSS
+   - Responsive design
+   
+💙 Más de 135 años cuidando la salud
+================================
+        `);
+    </script>
+</body>
+</html>
