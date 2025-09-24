@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <div>
+        <title>Recepción | Gestión de Pacientes y Citas</title>
+    </div>
+
+    <meta name="description"
+        content="Panel de Recepción: registrar pacientes, agendar, cancelar, reprogramar, consultar disponibilidad." />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Estilos del sitio (reutiliza tu paleta y utilidades) -->
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Ajustes mínimos específicos de recepción (pueden ir a styles.css) */
+        .avatar-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(0, 77, 122, .12);
+            color: var(--brand-primary);
+            font-weight: 700
+        }
+
+        .section-title {
+            font-weight: 600
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ====== TOP BAR ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-brand fixed-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <span class="brand-logo rounded-circle d-inline-grid place-items-center"><i data-lucide="headset"
+                        class="text-white"></i></span>
+                <span class="fw-bold">Recepción</span>
+            </a>
+            <div class="dropdown ms-auto">
+                <button class="btn btn-light rounded-circle p-2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i data-lucide="user" class="text-brand"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li class="px-3 py-2">
+                        <div class="fw-semibold">Operador/a</div>
+                        <div class="small text-muted">recepcion@hospital.com</div>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#"><i data-lucide="log-out" class="me-2"></i>Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="pt-nav"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ====== SIDE NAV (reutiliza estilo) ====== -->
+            <aside class="col-lg-2">
+                <nav class="d-none d-lg-block sticky-top" style="top: calc(var(--nav-h) + 1rem);">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-brand text-white fw-bold py-2">Panel de Recepción</div>
+                        <div class="list-group list-group-flush nav-side">
+                            <a class="list-group-item list-group-item-action active" href="#"><i data-lucide="home"
+                                    class="me-2"></i>Inicio</a>
+                            <a class="list-group-item list-group-item-action" href="#" data-bs-toggle="modal"
+                                data-bs-target="#modalRegistrar"><i data-lucide="user-plus" class="me-2"></i>Registrar
+                                paciente</a>
+                            <a class="list-group-item list-group-item-action" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offDisponibilidad"><i data-lucide="calendar"
+                                    class="me-2"></i>Disponibilidad médicos</a>
+                            <a class="list-group-item list-group-item-action" href="#"><i data-lucide="settings"
+                                    class="me-2"></i>Preferencias</a>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- ====== CONTENT ====== -->
+            <section class="col-lg-10">
+                <!-- 1) Buscador por documento -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <div class="section-title mb-2">Buscar paciente por documento</div>
+                        <form class="row g-2 align-items-end" id="formBuscar">
+                            <div class="col-12 col-md-4">
+                                <label class="form-label">Documento</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i data-lucide="search"></i></span>
+                                    <input type="text" class="form-control" id="docBusqueda"
+                                        placeholder="DNI / CC / Pasaporte" required />
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <button type="submit" class="btn btn-brand w-100"><i data-lucide="search"
+                                        class="me-1"></i>Buscar</button>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                                    data-bs-target="#modalRegistrar">
+                                    <i data-lucide="user-plus" class="me-1"></i>Registrar nuevo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2) Información del paciente (se llena tras la búsqueda) -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <div class="section-title mb-3">Datos del paciente</div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <span class="avatar-circle">JS</span>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <label class="form-label">Nombre completo</label>
+                                <input class="form-control" id="pNombre" value="—" readonly>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label">Documento</label>
+                                <input class="form-control" id="pDoc" value="—" readonly>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label">Teléfono</label>
+                                <input class="form-control" id="pTel" value="—" readonly>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <label class="form-label">EPS / Cobertura</label>
+                                <input class="form-control" id="pEps" value="—" readonly>
+                            </div>
+                            <div class="col-12 col-md-2 d-grid">
+                                <!-- Botón para editar ficha si hace falta -->
+                                <button class="btn btn-outline-secondary"><i data-lucide="edit-3"
+                                        class="me-1"></i>Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3) Agenda de citas del paciente -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <div
+                            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-2 gap-2">
+                            <div class="section-title m-0">Citas agendadas</div>
+                            <!-- CTA para nueva cita -->
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNuevaCita">
+                                <i data-lucide="calendar-plus" class="me-1"></i>Agendar cita
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Médico</th>
+                                        <th>Especialidad</th>
+                                        <th>Estado</th>
+                                        <th class="text-end">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Ejemplo de fila -->
+                                    <tr>
+                                        <td>15/10/2025</td>
+                                        <td>10:30</td>
+                                        <td>Dr. Gómez</td>
+                                        <td>Clínica Médica</td>
+                                        <td><span class="badge text-bg-info">Programada</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-outline-primary btn-sm me-1" data-bs-toggle="modal"
+                                                data-bs-target="#modalReprogramar">
+                                                <i data-lucide="clock-8" class="me-1"></i>Reprogramar
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#modalCancelar">
+                                                <i data-lucide="x" class="me-1"></i>Cancelar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- Más filas dinámicas aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4) Vista rápida de disponibilidad de médicos -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="section-title mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="calendar"></i> Disponibilidad de médicos
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <div class="border rounded p-3 h-100">
+                                    <div class="fw-semibold mb-1">Clínica Médica</div>
+                                    <div class="small text-muted mb-2">Próximas 48 h</div>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <!-- Chips de turnos disponibles -->
+                                        <span class="badge bg-success-subtle text-success-emphasis border">Hoy
+                                            15:00</span>
+                                        <span class="badge bg-success-subtle text-success-emphasis border">Hoy
+                                            17:30</span>
+                                        <span class="badge bg-success-subtle text-success-emphasis border">Mañana
+                                            09:10</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Repite por especialidad/servicio -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ====== MODAL: REGISTRAR PACIENTE ====== -->
+    <div class="modal fade" id="modalRegistrar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i data-lucide="user-plus" class="me-1"></i>Registrar paciente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input class="form-control" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Apellido</label>
+                                <input class="form-control" required>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <label class="form-label">Documento</label>
+                                <input class="form-control" required>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <label class="form-label">Teléfono</label>
+                                <input class="form-control" placeholder="(XXX) XXX-XXXX">
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label">EPS / Cobertura</label>
+                                <input class="form-control" placeholder="Entidad">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Dirección</label>
+                                <input class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-secondary" type="button"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-brand" type="submit"><i data-lucide="check"
+                                class="me-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MODAL: NUEVA CITA ====== -->
+    <div class="modal fade" id="modalNuevaCita" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i data-lucide="calendar-plus" class="me-1"></i>Nueva cita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Selección de especialidad/médico/fecha/hora -->
+                        <div class="row g-3">
+                            <div class="col-12 col-md-4">
+                                <label class="form-label">Especialidad</label>
+                                <select class="form-select" required>
+                                    <option value="">Seleccionar…</option>
+                                    <option>Clínica Médica</option>
+                                    <option>Pediatría</option>
+                                    <option>Cardiología</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label">Médico</label>
+                                <select class="form-select" required>
+                                    <option>—</option>
+                                    <option>Dr. Gómez</option>
+                                    <option>Dra. Suárez</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label">Fecha</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label class="form-label">Hora</label>
+                                <input type="time" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Motivo</label>
+                                <input class="form-control" placeholder="Motivo de consulta">
+                            </div>
+                        </div>
+
+                        <!-- Ayuda de disponibilidad -->
+                        <div class="alert alert-info mt-3">
+                            <i data-lucide="info" class="me-1"></i>
+                            Para ver huecos disponibles por médico, abrí <a href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offDisponibilidad">Disponibilidad de médicos</a>.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-secondary" type="button"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-success" type="submit"><i data-lucide="check"
+                                class="me-1"></i>Agendar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MODAL: CANCELAR CITA ====== -->
+    <div class="modal fade" id="modalCancelar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i data-lucide="x" class="me-1"></i>Cancelar cita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Confirmás la cancelación de la cita seleccionada?</p>
+                        <label class="form-label">Motivo (opcional)</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-outline-danger" type="submit">Cancelar cita</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MODAL: REPROGRAMAR CITA ====== -->
+    <div class="modal fade" id="modalReprogramar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i data-lucide="clock-8" class="me-1"></i>Reprogramar cita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label">Nueva fecha</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Nueva hora</label>
+                                <input type="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-text mt-2">Verifica disponibilidad antes de confirmar.</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-primary" type="submit">Reprogramar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== OFFCANVAS: DISPONIBILIDAD MÉDICOS ====== -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offDisponibilidad">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title"><i data-lucide="calendar" class="me-1"></i>Disponibilidad de médicos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- Filtros básicos -->
+            <form class="row g-2 mb-3">
+                <div class="col-12 col-md-5">
+                    <label class="form-label">Especialidad</label>
+                    <select class="form-select">
+                        <option>Clínica Médica</option>
+                        <option>Pediatría</option>
+                        <option>Cardiología</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label class="form-label">Desde</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="col-6 col-md-3">
+                    <label class="form-label">Hasta</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="col-12 col-md-1 d-grid">
+                    <button class="btn btn-brand"><i data-lucide="search" class="me-1"></i>Ver</button>
+                </div>
+            </form>
+
+            <!-- Tabla de huecos disponibles -->
+            <div class="table-responsive">
+                <table class="table table-sm align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Médico</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Consultorio</th>
+                            <th class="text-end">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dr. Gómez</td>
+                            <td>15/10/2025</td>
+                            <td>15:00</td>
+                            <td>1A</td>
+                            <td class="text-end"><button class="btn btn-success btn-sm"><i data-lucide="check"
+                                        class="me-1"></i>Usar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Dra. Suárez</td>
+                            <td>16/10/2025</td>
+                            <td>09:10</td>
+                            <td>3B</td>
+                            <td class="text-end"><button class="btn btn-success btn-sm">Usar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Lucide -->
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

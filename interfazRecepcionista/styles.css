@@ -35,6 +35,17 @@ aside nav.sticky-top {
     color: #fff !important;
 }
 
+/* ==============================
+   PANEL DE RECEPCIÓN (card-header)
+   ============================== */
+.card-header.bg-brand {
+    background-color: #004d7a !important;
+    /* azul institucional */
+    color: #fff !important;
+    /* texto blanco */
+    font-weight: 600;
+}
+
 /* ========= Avatares iniciales en tabla de pacientes ========= */
 /* Círculo con iniciales del paciente. Contraste alto y tamaño compacto. */
 .avatar-circle {
