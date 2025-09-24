@@ -1,0 +1,58 @@
+/* ========= Avatares iniciales en tabla de pacientes ========= */
+/* Círculo con iniciales del paciente. Contraste alto y tamaño compacto. */
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 77, 122, .12);
+    /* azul suave */
+    color: var(--brand-primary);
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+/* Botón de marca reutilizable ya definido (.btn-brand). Forzamos altura en tablas. */
+table .btn,
+.table .btn {
+    padding: .35rem .6rem
+}
+
+/* Mejor legibilidad de la tabla en pantallas pequeñas */
+@media (max-width: 576px) {
+    .table thead {
+        display: none
+    }
+
+    /* oculta encabezado */
+    .table tbody tr {
+        display: block;
+        margin-bottom: .75rem;
+        border: 1px solid rgba(0, 0, 0, .075);
+        border-radius: .5rem;
+        padding: .5rem
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 0
+    }
+
+    .table tbody td::before {
+        /* Etiquetas "Paciente, Documento..." para móvil */
+        content: attr(data-label);
+        font-weight: 600;
+        color: #6c757d;
+        margin-right: .5rem;
+    }
+}
+
+/* Offcanvas ancho cómodo en desktop */
+@media (min-width: 992px) {
+    #offDisponibilidad {
+        width: 560px
+    }
+}

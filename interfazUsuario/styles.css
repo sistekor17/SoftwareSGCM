@@ -1,0 +1,111 @@
+/* =========================
+   Tokens de marca (paleta)
+   ========================= */
+:root {
+    --brand-primary: #004d7a;
+    /* Azul institucional */
+    --brand-secondary: #00a3e0;
+    /* Azul claro complementario */
+    --brand-accent: #28a745;
+    /* Acciones positivas */
+    --nav-h: 64px;
+    /* Altura de top bar fija */
+}
+
+/* =========================
+   Navbar superior
+   ========================= */
+.bg-brand {
+    /* Gradiente institucional */
+    background: linear-gradient(180deg, var(--brand-primary), #0b75a7);
+}
+
+.text-brand {
+    color: var(--brand-primary)
+}
+
+/* Logo circular con mismo azul del fondo */
+.brand-logo {
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(65% 65% at 35% 30%, #0aa3e0 0%, var(--brand-primary) 100%);
+    /* Si querés EXACTO al fondo, cambiá por: background: var(--brand-primary); */
+    place-items: center;
+}
+
+/* Compensa navbar fixed-top */
+.pt-nav {
+    padding-top: var(--nav-h)
+}
+
+/* =========================
+   Sidebar
+   ========================= */
+.nav-side .list-group-item {
+    padding: .75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.nav-side .list-group-item.active {
+    background: rgba(0, 77, 122, .08);
+    color: var(--brand-primary);
+    border-left: 4px solid var(--brand-primary);
+    border-color: rgba(0, 0, 0, .125);
+}
+
+/* =========================
+   Botones de marca
+   ========================= */
+.btn-brand {
+    background: var(--brand-accent);
+    border-color: var(--brand-accent);
+    color: #fff;
+}
+
+.btn-brand:hover {
+    filter: brightness(.95);
+}
+
+/* Links con color de marca */
+.link-brand {
+    color: var(--brand-secondary)
+}
+
+/* =========================
+   Cards de noticias
+   ========================= */
+.card-news img {
+    object-fit: cover;
+}
+
+/* =========================
+   Footer
+   ========================= */
+.footer-portal {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+}
+
+/* =========================
+   Utilidades pequeñas
+   ========================= */
+.place-items-center {
+    place-items: center
+}
+
+/* helper para grid */
+.d-inline-grid {
+    display: inline-grid
+}
+
+/* helper para logo */
+
+/* Responsive: mejor espaciado del sticky menú en desktop */
+@media (min-width: 992px) {
+    .pt-nav {
+        padding-top: calc(var(--nav-h) + .5rem)
+    }
+}

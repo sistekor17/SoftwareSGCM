@@ -125,6 +125,82 @@
     margin-left: .75rem
 }
 
+/* ========= FOOTER =========
+   Pie con grilla CSS: contenido adaptable y links útiles. */
+.footer {
+    background: var(--primary);
+    color: #fff;
+    padding: var(--xxl) 0 var(--lg)
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--xl);
+    margin-bottom: var(--xl)
+}
+
+.footer__title {
+    font-size: 1.2rem;
+    margin-bottom: .6rem;
+    font-weight: var(--w-semi)
+}
+
+.footer__text {
+    color: rgba(255, 255, 255, .8);
+    margin-bottom: .8rem
+}
+
+.footer__social {
+    display: flex;
+    gap: .5rem
+}
+
+.footer__social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .12);
+    color: #fff
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.footer__list li {
+    margin-bottom: .4rem
+}
+
+.footer__list a {
+    color: rgba(255, 255, 255, .85);
+    text-decoration: none
+}
+
+.footer__list a:hover {
+    color: #fff
+}
+
+.footer__list--contact i {
+    width: 1.1rem
+}
+
+.footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, .2);
+    padding-top: var(--lg);
+    text-align: center;
+    color: rgba(255, 255, 255, .8)
+}
+
+.footer__bottom a {
+    color: rgba(255, 255, 255, .8)
+}
+
 /* Responsive */
 @media(max-width:480px) {
     .brand-panel {
