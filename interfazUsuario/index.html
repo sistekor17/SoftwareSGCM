@@ -5,257 +5,471 @@
     <!-- Meta básico -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Inicio - Portal del Paciente</title>
-    <meta name="description" content="Portal del Paciente. Sistema de Gestion de Citas Medicas." />
+    <title>Portal del Paciente</title>
+    <meta name="description" content="Paciente: solicitar turnos, ver historial, estudios y citas programadas." />
 
-    <!-- Bootstrap 5 -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Iconos (Lucide vía CDN opcional) -->
+    <!-- Iconos -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Estilos propios -->
+    <!-- Estilos propios reutilizados -->
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <!-- ====== TOP BAR fijo: logo + cuenta ====== -->
-    <!-- bg-brand aplica el azul institucional; fixed-top lo fija arriba -->
+    <!-- ====== TOP BAR con azul institucional ====== -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-brand fixed-top shadow-sm">
         <div class="container-fluid">
-            <!-- Marca a la izquierda -->
+            <!-- Marca del portal -->
             <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                <!-- Logo redondo con mismo azul de fondo -->
                 <span class="brand-logo rounded-circle d-inline-grid place-items-center">
-                    <i data-lucide="hospital" class="text-white"></i>
+                    <i data-lucide="user-round" class="text-white"></i>
                 </span>
-                <span class="fw-bold">Sistema de Gestion de Citas Medicas</span>
-                <!-- <small class="text-white-50 ms-1">Bogota D.C.</small> -->
+                <span class="fw-bold">Portal del Paciente</span>
             </a>
 
-            <!-- Botón para abrir menú lateral en móvil -->
-            <button class="btn btn-outline-light d-lg-none" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#sidebar">
-                <i data-lucide="menu"></i>
-            </button>
-
-            <!-- Menú de cuenta a la derecha -->
+            <!-- Cuenta -->
             <div class="dropdown ms-auto">
                 <button class="btn btn-light rounded-circle p-2" data-bs-toggle="dropdown" aria-expanded="false">
                     <i data-lucide="user" class="text-brand"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end shadow">
                     <li class="px-3 py-2">
-                        <div class="fw-semibold">James Serrato</div>
-                        <div class="small text-muted">jamesserrato@hotmail.com</div>
+                        <div class="fw-semibold">Nombre Paciente</div>
+                        <div class="small text-muted">paciente@correo.com</div>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#"><i data-lucide="user" class="me-2"></i>Mi Cuenta</a></li>
                     <li><a class="dropdown-item" href="#"><i data-lucide="log-out" class="me-2"></i>Salir</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Separación por navbar fija -->
+    <!-- Espacio por navbar fija -->
     <div class="pt-nav"></div>
 
     <div class="container-fluid">
         <div class="row">
-            <!-- ====== SIDE NAV: offcanvas en móvil, fijo en desktop ====== -->
+            <!-- ====== SIDEBAR estilo unificado ====== -->
             <aside class="col-lg-2">
-                <!-- Offcanvas para móvil -->
-                <div class="offcanvas offcanvas-start bg-white shadow-lg" tabindex="-1" id="sidebar">
-                    <div class="offcanvas-header border-bottom">
-                        <h6 class="offcanvas-title fw-bold">Menú</h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                    </div>
-                    <div class="offcanvas-body p-0">
-                        <!-- Lista de navegación vertical con estados activos -->
-                        <nav class="list-group list-group-flush nav-side">
+                <nav class="d-none d-lg-block sticky-top" style="top: calc(var(--nav-h) + 1rem);">
+                    <div class="card shadow-sm">
+                        <!-- Encabezado del panel lateral con azul institucional -->
+                        <div class="card-header bg-brand text-white fw-bold py-2">Panel del Paciente</div>
+
+                        <!-- Navegación lateral -->
+                        <div class="list-group list-group-flush nav-side">
                             <a class="list-group-item list-group-item-action active" href="#">
                                 <i data-lucide="home" class="me-2"></i>Inicio
                             </a>
-                            <a class="list-group-item list-group-item-action" href="#">
-                                <i data-lucide="user" class="me-2"></i>Mi Cuenta
+                            <a class="list-group-item list-group-item-action" href="#solicitar">
+                                <i data-lucide="calendar-plus" class="me-2"></i>Solicitar cita
                             </a>
-                            <!-- Dropdown “Turnos” colapsable -->
-                            <div class="list-group-item">
-                                <button
-                                    class="btn btn-link p-0 d-inline-flex align-items-center w-100 justify-content-between"
-                                    data-bs-toggle="collapse" data-bs-target="#nav-turnos">
-                                    <span><i data-lucide="calendar" class="me-2"></i>Turnos</span>
-                                    <i data-lucide="chevron-down"></i>
-                                </button>
-                                <div id="nav-turnos" class="collapse mt-2 ps-3">
-                                    <a class="list-group-item list-group-item-action border-0 ps-0" href="#"><i
-                                            data-lucide="plus" class="me-2"></i>Sacar Turno</a>
-                                    <a class="list-group-item list-group-item-action border-0 ps-0" href="#"><i
-                                            data-lucide="list" class="me-2"></i>Mis Turnos</a>
-                                </div>
-                            </div>
-                            <a class="list-group-item list-group-item-action" href="#"><i data-lucide="mail"
-                                    class="me-2"></i>Contacto</a>
-                            <div class="list-group-item small text-muted">—</div>
-                            <a class="list-group-item list-group-item-action" href="#"><i data-lucide="toggle-right"
-                                    class="me-2"></i>Cerrar sesión</a>
-                        </nav>
-                    </div>
-                </div>
-
-                <!-- Menú fijo visible en ≥lg (duplicamos contenido para desktop) -->
-                <nav class="d-none d-lg-block sticky-top" style="top: calc(var(--nav-h) + 1rem);">
-                    <div class="card shadow-sm">
-                        <div class="list-group list-group-flush nav-side">
-                            <a class="list-group-item list-group-item-action active" href="#"><i data-lucide="home"
-                                    class="me-2"></i>Inicio</a>
-                            <a class="list-group-item list-group-item-action" href="#"><i data-lucide="user"
-                                    class="me-2"></i>Mi Cuenta</a>
-                            <div class="list-group-item">
-                                <button
-                                    class="btn btn-link p-0 d-inline-flex align-items-center w-100 justify-content-between"
-                                    data-bs-toggle="collapse" data-bs-target="#nav-turnos-lg">
-                                    <span><i data-lucide="calendar" class="me-2"></i>Turnos</span>
-                                    <i data-lucide="chevron-down"></i>
-                                </button>
-                                <div id="nav-turnos-lg" class="collapse mt-2 ps-3">
-                                    <a class="list-group-item list-group-item-action border-0 ps-0" href="#"><i
-                                            data-lucide="plus" class="me-2"></i>Sacar Turno</a>
-                                    <a class="list-group-item list-group-item-action border-0 ps-0" href="#"><i
-                                            data-lucide="list" class="me-2"></i>Mis Turnos</a>
-                                </div>
-                            </div>
-                            <a class="list-group-item list-group-item-action" href="#"><i data-lucide="mail"
-                                    class="me-2"></i>Contacto</a>
-                            <div class="list-group-item small text-muted">—</div>
-                            <a class="list-group-item list-group-item-action" href="#"><i data-lucide="toggle-right"
-                                    class="me-2"></i>Cerrar sesión</a>
+                            <a class="list-group-item list-group-item-action" href="#programadas">
+                                <i data-lucide="calendar-clock" class="me-2"></i>Citas programadas
+                            </a>
+                            <a class="list-group-item list-group-item-action" href="#historial">
+                                <i data-lucide="history" class="me-2"></i>Historial de citas
+                            </a>
+                            <a class="list-group-item list-group-item-action" href="#estudios">
+                                <i data-lucide="file-badge" class="me-2"></i>Estudios y exámenes
+                            </a>
                         </div>
                     </div>
                 </nav>
             </aside>
 
-            <!-- ====== CONTENT ====== -->
+            <!-- ====== CONTENIDO ====== -->
             <section class="col-lg-10">
-                <!-- Título sección -->
-                <h2 class="h5 fw-semibold mt-3 mb-3">Inicio</h2>
 
-                <!-- Tarjetas resumen -->
-                <div class="row g-3">
-                    <!-- Próximo turno -->
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body">
-                                <h3 class="h6 mb-3">Próximo Turno</h3>
-                                <p class="mb-3">No tiene turnos agendados</p>
-                                <a href="#" class="btn btn-brand w-100 w-md-auto">Sacar Turno</a>
-                            </div>
-                        </div>
-                    </div>
+                <!-- =========================
+             1) SOLICITAR CITA
+             ========================= -->
+                <div id="solicitar" class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="h5 fw-semibold mb-3">Solicitar una cita</h2>
 
-                    <!-- Aviso de validación -->
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body">
-                                <!-- Alerta suave con icono -->
-                                <div class="alert alert-warning d-flex align-items-center" role="alert">
-                                    <i data-lucide="alert-circle" class="me-2"></i>
-                                    <div class="fw-semibold">Acceso restringido.</div>
+                        <!-- Pestañas de búsqueda: por especialidad / por nombre -->
+                        <ul class="nav nav-pills mb-3" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" data-bs-toggle="pill"
+                                    data-bs-target="#busq-especialidad" type="button" role="tab">
+                                    <i data-lucide="stethoscope" class="me-1"></i> Por especialidad
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#busq-nombre"
+                                    type="button" role="tab">
+                                    <i data-lucide="user-search" class="me-1"></i> Por nombre de médico
+                                </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <!-- --- Búsqueda por especialidad --- -->
+                            <div class="tab-pane fade show active" id="busq-especialidad" role="tabpanel">
+                                <!-- Selector de especialidad -->
+                                <form class="row g-2 align-items-end">
+                                    <div class="col-12 col-md-5">
+                                        <label class="form-label">Especialidad</label>
+                                        <select class="form-select">
+                                            <option value="">Seleccionar…</option>
+                                            <option>Clínica Médica</option>
+                                            <option>Pediatría</option>
+                                            <option>Cardiología</option>
+                                            <option>Dermatología</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6 col-md-2">
+                                        <label class="form-label">Desde</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="col-6 col-md-2">
+                                        <label class="form-label">Hasta</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="col-12 col-md-3 d-grid">
+                                        <button class="btn btn-brand" type="button">
+                                            <i data-lucide="search" class="me-1"></i>Buscar médicos
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <!-- Listado de médicos de esa especialidad (mock) -->
+                                <div class="row g-3 mt-3">
+                                    <!-- Card de médico -->
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center gap-2 mb-2">
+                                                    <span class="avatar-circle">DG</span>
+                                                    <div>
+                                                        <div class="fw-semibold">Dr. Diego Gómez</div>
+                                                        <div class="small text-muted">Clínica Médica</div>
+                                                    </div>
+                                                </div>
+                                                <!-- Botón para ver horarios disponibles del médico -->
+                                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse"
+                                                    data-bs-target="#slots-gomez">
+                                                    <i data-lucide="clock" class="me-1"></i>Ver horarios
+                                                </button>
+
+                                                <!-- Horarios como chips -->
+                                                <div id="slots-gomez" class="collapse mt-3">
+                                                    <div class="d-flex flex-wrap gap-2">
+                                                        <!-- Al elegir un horario, abrimos modal de recordatorios -->
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#modalConfirmar" data-doc="Dr. Diego Gómez"
+                                                            data-fecha="15/10/2025" data-hora="10:30">15/10
+                                                            10:30</button>
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#modalConfirmar" data-doc="Dr. Diego Gómez"
+                                                            data-fecha="15/10/2025" data-hora="11:10">15/10
+                                                            11:10</button>
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#modalConfirmar" data-doc="Dr. Diego Gómez"
+                                                            data-fecha="16/10/2025" data-hora="09:00">16/10
+                                                            09:00</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Otro médico -->
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center gap-2 mb-2">
+                                                    <span class="avatar-circle">AS</span>
+                                                    <div>
+                                                        <div class="fw-semibold">Dra. Ana Suárez</div>
+                                                        <div class="small text-muted">Clínica Médica</div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse"
+                                                    data-bs-target="#slots-suarez">
+                                                    <i data-lucide="clock" class="me-1"></i>Ver horarios
+                                                </button>
+                                                <div id="slots-suarez" class="collapse mt-3">
+                                                    <div class="d-flex flex-wrap gap-2">
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#modalConfirmar" data-doc="Dra. Ana Suárez"
+                                                            data-fecha="17/10/2025" data-hora="14:00">17/10
+                                                            14:00</button>
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#modalConfirmar" data-doc="Dra. Ana Suárez"
+                                                            data-fecha="17/10/2025" data-hora="15:40">17/10
+                                                            15:40</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Agrega más cards según resultados -->
                                 </div>
-                                <p class="mt-2">Tu cuenta todavía no fue validada por el Sistema de Gestion de Citas
-                                    Medicas.</p>
-                                <ul class="ps-3">
-                                    <li>Funciones restringidas hasta su validación.</li>
-                                    <li>Sin historial, sin internaciones, máximo 3 turnos.</li>
-                                    <li>Consultas en <a href="#" class="link-brand">contacto</a>.</li>
-                                </ul>
                             </div>
+
+                            <!-- --- Búsqueda por nombre de médico --- -->
+                            <div class="tab-pane fade" id="busq-nombre" role="tabpanel">
+                                <form class="row g-2 align-items-end">
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label">Nombre del profesional</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i data-lucide="search"></i></span>
+                                            <input type="search" class="form-control"
+                                                placeholder="Ej: 'Gómez' o 'Ana Suárez'">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <label class="form-label">Desde</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <label class="form-label">Hasta</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </form>
+
+                                <!-- Resultado: un médico con horarios (mock) -->
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="avatar-circle">RC</span>
+                                            <div>
+                                                <div class="fw-semibold">Dr. Ricardo Castillo</div>
+                                                <div class="small text-muted">Cardiología</div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse"
+                                            data-bs-target="#slots-castillo">
+                                            <i data-lucide="clock" class="me-1"></i>Ver horarios
+                                        </button>
+                                        <div id="slots-castillo" class="collapse mt-3">
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#modalConfirmar" data-doc="Dr. Ricardo Castillo"
+                                                    data-fecha="20/10/2025" data-hora="08:30">20/10 08:30</button>
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#modalConfirmar" data-doc="Dr. Ricardo Castillo"
+                                                    data-fecha="20/10/2025" data-hora="09:10">20/10 09:10</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- /tab-content -->
+                    </div>
+                </div>
+
+                <!-- =========================
+             2) CITAS PROGRAMADAS
+             ========================= -->
+                <div id="programadas" class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="h6 fw-semibold mb-3">Citas programadas</h2>
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Médico</th>
+                                        <th>Especialidad</th>
+                                        <th>Estado</th>
+                                        <th class="text-end">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>22/10/2025</td>
+                                        <td>10:00</td>
+                                        <td>Dra. Ana Suárez</td>
+                                        <td>Clínica Médica</td>
+                                        <td><span class="badge text-bg-info">Programada</span></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-outline-primary btn-sm"><i
+                                                    data-lucide="calendar-sync" class="me-1"></i>Reprogramar</button>
+                                            <button class="btn btn-outline-danger btn-sm"><i data-lucide="x"
+                                                    class="me-1"></i>Cancelar</button>
+                                        </td>
+                                    </tr>
+                                    <!-- Más filas dinámicas -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Noticias -->
-                    <div class="col-12">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <h3 class="h5 text-center mb-4">Noticias</h3>
-
-                                <!-- Grid de noticias con cards clicables -->
-                                <div class="row g-3">
-                                    <!-- Noticia 1 -->
-                                    <div class="col-12 col-sm-6 col-lg-4">
-                                        <a href="#" class="card h-100 shadow-sm text-decoration-none card-news">
-                                            <div class="d-flex justify-content-between align-items-center p-3">
-                                                <h4 class="h6 mb-0 text-body fw-semibold">Horarios de Visita</h4>
-                                                <span class="btn btn-dark btn-sm">Ver más</span>
-                                            </div>
-                                            <div class="ratio ratio-1x1">
-                                                <img src="https://www.hospitaldelinares.gob.cl/wp-content/uploads/2022/10/horarios.jpg"
-                                                    class="img-fluid rounded-bottom" alt="Horarios de Visita">
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <!-- Noticia 2 -->
-                                    <div class="col-12 col-sm-6 col-lg-4">
-                                        <a href="#" class="card h-100 shadow-sm text-decoration-none card-news">
-                                            <div class="d-flex justify-content-between align-items-center p-3">
-                                                <h4 class="h6 mb-0 text-body fw-semibold">Monto permitido</h4>
-                                                <span class="btn btn-dark btn-sm">Ver más</span>
-                                            </div>
-                                            <div class="ratio ratio-1x1">
-                                                <img src="https://fundacion.italianolaplata.org.ar//storage/contenido/47/DIs9wdcqC7Bfa7fW8sT3SyNzCKf07CpV29gZlqgK.png"
-                                                    class="img-fluid rounded-bottom" alt="Monto permitido">
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <!-- Noticia 3 -->
-                                    <div class="col-12 col-sm-6 col-lg-4">
-                                        <a href="#" class="card h-100 shadow-sm text-decoration-none card-news">
-                                            <div class="d-flex justify-content-between align-items-center p-3">
-                                                <h4 class="h6 mb-0 text-body fw-semibold">Pacientes PAMI</h4>
-                                                <span class="btn btn-dark btn-sm">Ver más</span>
-                                            </div>
-                                            <div class="ratio ratio-1x1">
-                                                <img src="https://tse4.mm.bing.net/th/id/OIP.Jzx16GCqcukGDw3yzxiUzQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
-                                                    class="img-fluid rounded-bottom" alt="Pacientes PAMI">
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div><!-- /row -->
-                            </div>
+                <!-- =========================
+             3) HISTORIAL DE CITAS
+             ========================= -->
+                <div id="historial" class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="h6 fw-semibold mb-3">Historial de citas</h2>
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Médico</th>
+                                        <th>Especialidad</th>
+                                        <th>Diagnóstico / Nota</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12/03/2025</td>
+                                        <td>Dr. Gómez</td>
+                                        <td>Clínica Médica</td>
+                                        <td>Cefalea tensional. Reposo e hidratación.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>07/01/2025</td>
+                                        <td>Dr. Castillo</td>
+                                        <td>Cardiología</td>
+                                        <td>Control lipídico. Dieta y ejercicio.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div><!-- /row -->
+                </div>
 
-                <!-- Footer fijo inferior del contenido
-                <footer
-                    class="footer-portal border-top mt-4 py-3 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <a href="https://www.italianolaplata.org.ar" target="_blank">
-                            <img src="https://portal.italianolaplata.org.ar/assets/img/logo_hilp2.png"
-                                alt="Sistema de Gestion de Citas Medicas Bogota D.C." height="32">
-                        </a>
-                        <span class="text-muted">| Av. 51 N° 1725 e/ 29 y 30 | Tel: (0221) 512 9500</span>
+                <!-- =========================
+             4) ESTUDIOS Y EXÁMENES
+             ========================= -->
+                <div id="estudios" class="card shadow-sm mb-5">
+                    <div class="card-body">
+                        <h2 class="h6 fw-semibold mb-3">Estudios y exámenes</h2>
+                        <div class="row g-3">
+                            <!-- Estudio como card clicable -->
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <a href="#" class="card h-100 text-decoration-none">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div class="fw-semibold">Laboratorio sanguíneo</div>
+                                            <span class="badge text-bg-success">Disponible</span>
+                                        </div>
+                                        <div class="small text-muted">Tomado: 05/02/2025</div>
+                                        <div class="mt-2"><i data-lucide="file-down" class="me-1"></i>Descargar
+                                            resultados</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Más estudios -->
+                        </div>
                     </div>
-                    <div class="d-flex gap-3 me-md-2">
-                        <a href="#" class="text-brand"><i data-lucide="instagram"></i></a>
-                        <a href="#" class="text-brand"><i data-lucide="facebook"></i></a>
-                        <a href="#" class="text-brand"><i data-lucide="twitter"></i></a>
-                        <a href="#" class="text-brand"><i data-lucide="youtube"></i></a>
-                        <a href="mailto:info@italianolaplata.org.ar" class="text-brand"><i data-lucide="mail"></i></a>
-                    </div>
-                </footer> -->
+                </div>
+
             </section>
+        </div>
+    </div>
+
+    <!-- =========================
+       MODAL: CONFIRMAR CITA + RECORDATORIOS
+       ========================= -->
+    <div class="modal fade" id="modalConfirmar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i data-lucide="calendar-check" class="me-1"></i>Confirmar cita
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- Resumen del turno: ahora incluye especialidad -->
+                        <div class="alert alert-light border" id="resumenTurno">
+                            <strong>Médico:</strong> <span data-field="doc">Dr. Diego Gómez</span> ·
+                            <strong>Especialidad:</strong> <span data-field="esp">Clínica Médica</span> ·
+                            <strong>Fecha:</strong> <span data-field="fecha">15/10/2025</span> ·
+                            <strong>Hora:</strong> <span data-field="hora">11:10</span>
+                        </div>
+
+                        <!-- Métodos de recordatorio -->
+                        <label class="form-label">Métodos de recordatorio</label>
+                        <div class="row g-3">
+                            <!-- Email -->
+                            <div class="col-12 col-sm-4">
+                                <div
+                                    class="form-check text-center d-flex flex-column align-items-center justify-content-center border rounded h-100 py-3">
+                                    <span
+                                        class="rounded-circle d-inline-grid place-items-center bg-primary text-white mb-2"
+                                        style="width:42px;height:42px;">
+                                        <i data-lucide="mail"></i>
+                                    </span>
+                                    <input class="form-check-input me-0 mt-0" type="checkbox" id="recEmail" checked>
+                                    <label class="form-check-label mt-2" for="recEmail">Correo electrónico</label>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp -->
+                            <div class="col-12 col-sm-4">
+                                <div
+                                    class="form-check text-center d-flex flex-column align-items-center justify-content-center border rounded h-100 py-3">
+                                    <span class="rounded-circle d-inline-grid place-items-center mb-2"
+                                        style="width:42px;height:42px; background:#25D366; color:#fff;">
+                                        <i data-lucide="smartphone"></i>
+                                    </span>
+                                    <input class="form-check-input me-0 mt-0" type="checkbox" id="recWhats">
+                                    <label class="form-check-label mt-2" for="recWhats">WhatsApp</label>
+                                </div>
+                            </div>
+
+                            <!-- SMS -->
+                            <div class="col-12 col-sm-4">
+                                <div
+                                    class="form-check text-center d-flex flex-column align-items-center justify-content-center border rounded h-100 py-3">
+                                    <span
+                                        class="rounded-circle d-inline-grid place-items-center bg-secondary text-white mb-2"
+                                        style="width:42px;height:42px;">
+                                        <i data-lucide="message-circle"></i>
+                                    </span>
+                                    <input class="form-check-input me-0 mt-0" type="checkbox" id="recSMS">
+                                    <label class="form-check-label mt-2" for="recSMS">SMS</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-text mt-2">
+                            Usaremos tus datos de contacto registrados para los recordatorios.
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-secondary" type="button"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-success" type="submit">
+                            <i data-lucide="check" class="me-1"></i>Confirmar cita
+                        </button>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Inicializa iconos Lucide -->
-    <script> lucide.createIcons(); </script>
+    <!-- Inicializa iconos -->
+    <script>
+        lucide.createIcons();
+
+        // Rellena el resumen del modal con los datos del botón horario clicado
+        const modal = document.getElementById('modalConfirmar');
+        modal.addEventListener('show.bs.modal', e => {
+            const btn = e.relatedTarget;
+            if (!btn) return;
+            modal.querySelector('[data-field="doc"]').textContent = btn.getAttribute('data-doc') || '—';
+            modal.querySelector('[data-field="fecha"]').textContent = btn.getAttribute('data-fecha') || '—';
+            modal.querySelector('[data-field="hora"]').textContent = btn.getAttribute('data-hora') || '—';
+        });
+    </script>
 </body>
 
 </html>

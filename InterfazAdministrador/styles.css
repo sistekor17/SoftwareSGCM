@@ -1,0 +1,95 @@
+/* ==============================
+   FIX NAVBAR Y SIDE NAV
+   ============================== */
+
+/* Altura estándar de la barra superior */
+:root {
+    --nav-h: 72px;
+    /* ajusta según la altura real de tu header */
+}
+
+/* Empuja todo el contenido para que no quede detrás del navbar */
+body {
+    padding-top: var(--nav-h);
+}
+
+/* Si usas aside con sticky-top, dale un margen desde el navbar */
+aside nav.sticky-top {
+    top: calc(var(--nav-h) + 1rem);
+    /* baja el menú lateral */
+}
+
+/* ==============================
+   NAVBAR SUPERIOR
+   ============================== */
+.navbar.bg-brand {
+    background-color: #004d7a !important;
+    /* azul institucional */
+}
+
+.navbar.bg-brand .navbar-brand,
+.navbar.bg-brand .nav-link,
+.navbar.bg-brand .dropdown-toggle,
+.navbar.bg-brand .dropdown-item,
+.navbar.bg-brand .btn {
+    color: #fff !important;
+}
+
+/* ========= Avatares iniciales en tabla de pacientes ========= */
+/* Círculo con iniciales del paciente. Contraste alto y tamaño compacto. */
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 77, 122, .12);
+    /* azul suave */
+    color: var(--brand-primary);
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+/* Botón de marca reutilizable ya definido (.btn-brand). Forzamos altura en tablas. */
+table .btn,
+.table .btn {
+    padding: .35rem .6rem
+}
+
+/* Mejor legibilidad de la tabla en pantallas pequeñas */
+@media (max-width: 576px) {
+    .table thead {
+        display: none
+    }
+
+    /* oculta encabezado */
+    .table tbody tr {
+        display: block;
+        margin-bottom: .75rem;
+        border: 1px solid rgba(0, 0, 0, .075);
+        border-radius: .5rem;
+        padding: .5rem
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 0
+    }
+
+    .table tbody td::before {
+        /* Etiquetas "Paciente, Documento..." para móvil */
+        content: attr(data-label);
+        font-weight: 600;
+        color: #6c757d;
+        margin-right: .5rem;
+    }
+}
+
+/* Offcanvas ancho cómodo en desktop */
+@media (min-width: 992px) {
+    #offDisponibilidad {
+        width: 560px
+    }
+}
