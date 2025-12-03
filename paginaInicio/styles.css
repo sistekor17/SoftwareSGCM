@@ -221,10 +221,17 @@ body {
     color: var(--primary)
 }
 
-.header__nav-link--emergency {
-    background: var(--danger);
+.header__nav-link--ingresoPaciente {
+    background: var(--secondary);
     color: #fff;
-    font-weight: var(--w-semi)
+    font-weight: var(--w-semi);
+    padding: var(--xs) var(--sm);
+    /* igual que los demás */
+    line-height: 1.6;
+    /* iguala altura */
+    display: inline-flex;
+    align-items: center;
+
 }
 
 .header__nav-link--emergency:hover {

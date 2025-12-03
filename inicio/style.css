@@ -1,0 +1,103 @@
+/* Reseteo del boxmodel */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color primario institucional */
+    --bs-primary: #004d7a;
+    --bs-primary-rgb: 0, 77, 122;
+    /* Color secundario */
+    --bs-info: #00a3e0;
+
+}
+
+/* tipografia */
+body {
+
+    font-family: 'Inter', sans-serif;
+}
+
+/*scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Sobreescribir el color primary de Bootstrap para usar el institucional */
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+/* HERO: Gradiente personalizado de color */
+.hero-section {
+    background: linear-gradient(135deg, #004d7a 0%, #00a3e0 100%);
+    min-height: 500px;
+    position: relative;
+}
+
+/* Efecto de "Blur" estilo vidrio para los números del hero */
+.backdrop-blur {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Utilidad para círculos de íconos */
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animación CSS para reemplazar JS */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+/* Animación simple de entrada (Fade Up) */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* Retrasos para efecto cascada */
+.delay-1 {
+    animation-delay: 0.2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
